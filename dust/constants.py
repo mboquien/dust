@@ -1,7 +1,6 @@
 import astropy.constants as cst
 import astropy.units as units
 import numpy as np
-import scipy as sp
 
 # ----------------------------------------------------------
 # Generic constants
@@ -53,20 +52,12 @@ cperh0 = (clight * 1.e-5 / h0) * (1.e6 * pc2cm)
 # I think I used these for checking something
 # way back in the day
 
-# Wrapper for scipy integration, used in cosmology integral
+# Wrapper for numpy integration, used in cosmology integral
 def intz(x, y):
-    from scipy import integrate
-    return sp.integrate.trapz(y,x)
+    return np.trapz(y, x)
 # Note that scipy calls integration in reverse order as I do
 
-# Basic trapezoidal integration function
-def trapezoidal_int(x, y):
-    dx = x[1:] - x[:-1]
-    dy = y[1:] - y[:-1]
-    return np.sum( y[:-1]*dx + 0.5*dx*dy )
-
-
-#------- Save and restore functions, similar to IDL -------#
+# ------- Save and restore functions, similar to IDL -------#
 # http://idl2python.blogspot.com/2010/10/save-and-restore-2.html
 # Updated April 20, 2012 to store objects
 # http://wiki.python.org/moin/UsingPickle
