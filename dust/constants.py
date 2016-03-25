@@ -1,5 +1,5 @@
-
-import math
+import astropy.constants as cst
+import astropy.units as units
 import numpy as np
 import scipy as sp
 
@@ -7,28 +7,28 @@ import scipy as sp
 # Generic constants
 
 # Speed of light
-clight = 3.e10 # cm/s
+clight = cst.c.to('cm/s')
 
 # Planck's h constant
-hplanck = np.float64( 4.136e-18 )  # keV s
+hplanck = cst.h.to('keV s')
 
 # Electron radius
-r_e = 2.83e-13 # cm
+r_e = (2.8179403227e-15 * units.m).to('cm')
 
 # Mass of proton
-m_p = np.float64( 1.673e-24 ) # g
+m_p = cst.m_p.to('g')
 
 # ----------------------------------------------------------
 # Constants for converting things
 
-micron2cm = 1.e-6 * 100.0 # cm/micron
-pc2cm     = 3.09e18       # cm/pc
+micron2cm = units.um.to('cm')
+pc2cm = cst.pc.to('cm')
 
-arcs2rad  = (2.0*np.pi) / (360.*60.*60.)  # rad/arcsec
-arcm2rad  = (2.0*np.pi) / (360.*60.)      # rad/arcmin
+arcs2rad = units.arcsec.to('radian')
+arcm2rad = units.arcmin.to('radian')
 
-hc        = (clight * hplanck) # keV cm
-hc_angs   = (clight * hplanck) * 1.e8  # keV angs
+hc = clight * hplanck
+hc_angs = hc.to('keV Anstrom')
 
 # ----------------------------------------------------------
 # Cosmology related constants
